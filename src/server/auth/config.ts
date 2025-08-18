@@ -35,8 +35,8 @@ export const authConfig = {
   secret: env.AUTH_SECRET,
   providers: [
     GoogleProvider({
-      clientId: env.AUTH_GOOGLE_CLIENT_ID as string,
-      clientSecret: env.AUTH_GOOGLE_CLIENT_SECRET as string,
+      clientId: env.AUTH_GOOGLE_CLIENT_ID,
+      clientSecret: env.AUTH_GOOGLE_CLIENT_SECRET,
     }),
     /**
      * ...add more providers here.
