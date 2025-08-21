@@ -4,6 +4,7 @@ import { type Metadata } from "next";
 import { Crimson_Text, Geist, Inter } from "next/font/google";
 
 import { TRPCReactProvider } from "@/trpc/react";
+import { ThemeProvider } from "@/components/theme-providers";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -31,9 +32,17 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${crimson.variable} antialiased`}
+      suppressHydrationWarning
     >
       <body>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <TRPCReactProvider>{children}</TRPCReactProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
