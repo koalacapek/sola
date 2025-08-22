@@ -38,6 +38,7 @@ export const authConfig = {
     GoogleProvider({
       clientId: env.AUTH_GOOGLE_CLIENT_ID,
       clientSecret: env.AUTH_GOOGLE_CLIENT_SECRET,
+      authorization: { params: { access_type: "offline", prompt: "consent" } },
     }),
     /**
      * ...add more providers here.
