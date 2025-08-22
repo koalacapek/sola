@@ -8,16 +8,42 @@ import { useEffect, useState } from "react";
 export default function Navbar() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const [visible, setVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  useEffect(() => {
+    const controlNavbar = () => {
+      if (typeof window !== "undefined") {
+        if (window.scrollY > lastScrollY && window.scrollY > 50) {
+          setVisible(false);
+        } else {
+          setVisible(true);
+        }
+
+        setLastScrollY(window.scrollY);
+      }
+    };
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", controlNavbar);
+
+      return () => {
+        window.removeEventListener("scroll", controlNavbar);
+      };
+    }
+  }, [lastScrollY]);
+
   if (!mounted) {
     return null;
   }
   return (
-    <header className="border-border bg-background/95 sticky top-0 z-50 border-b backdrop-blur-sm">
+    <header
+      className={`border-border bg-background/95 sticky top-0 z-50 border-b backdrop-blur-sm transition-all duration-300 ${!visible && "md:-translate-y-[185%]"}`}
+    >
       <div className="mx-auto w-full px-8">
         <div className="flex h-16 items-center justify-between">
           <span className="text-foreground font-serif text-2xl">Sola</span>

@@ -87,26 +87,28 @@ export default function HomePageContent() {
       </section>
 
       <section id="schedule" className="bg-background px-8 py-24">
-        <div className="mb-16 text-center">
-          <h2 className="text-foreground mb-6 font-serif text-6xl leading-tight">
-            Today&apos;s Schedule
-          </h2>
-          <p className="text-muted-foreground mx-auto max-w-2xl text-lg font-light">
-            Book your spot in today&apos;s classes. Limited spaces available.
-          </p>
-        </div>
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-16 text-center">
+            <h2 className="text-foreground mb-6 font-serif text-6xl leading-tight">
+              Today&apos;s Schedule
+            </h2>
+            <p className="text-muted-foreground mx-auto max-w-2xl text-lg font-light">
+              Book your spot in today&apos;s classes. Limited spaces available.
+            </p>
+          </div>
 
-        <div className="grid gap-4 px-20">
-          {data.map((item, index) => (
-            <ScheduleCard
-              key={index}
-              time={item.time}
-              class={item.class}
-              instructor={item.instructor}
-              spots={item.spots}
-              level={item.level}
-            />
-          ))}
+          <div className="grid gap-4">
+            {data.map((item, index) => (
+              <ScheduleCard
+                key={index}
+                time={item.time}
+                class={item.class}
+                instructor={item.instructor}
+                spots={item.spots}
+                level={item.level}
+              />
+            ))}
+          </div>
         </div>
       </section>
     </div>
